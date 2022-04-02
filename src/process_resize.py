@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 def process_isic2018(
         dim=(512, 512), save_dir='/raid/wjc/data/skin_lesion/isic2018/'):
     image_dir_path = '/raid/wl/2018_raw_data/ISIC2018_Task1-2_Training_Input/'
-    mask_dir_path = 'path_to_image'
+    mask_dir_path = 'path_to_image_01'
 
     image_path_list = os.listdir(image_dir_path)
     mask_path_list = os.listdir(mask_dir_path)
