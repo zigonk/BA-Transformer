@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 
 
 def process_isic2018(
-        dim=(512, 512), save_dir='/raid/wjc/data/skin_lesion/isic2018/'):
-    image_dir_path = '/raid/wl/2018_raw_data/ISIC2018_Task1-2_Training_Input/'
-    mask_dir_path = '/raid/wl/2018_raw_data/ISIC2018_Task1_Training_GroundTruth/'
+        dim=(512, 512), save_dir='/content/main/data/isic2018/'):
+    image_dir_path = '/content/main/data/isic2018/ISIC2018_Task1-2_Training_Input/'
+    mask_dir_path = '/content/main/data/isic2018/ISIC2018_Task1_Training_GroundTruth/'
 
     image_path_list = os.listdir(image_dir_path)
     mask_path_list = os.listdir(mask_dir_path)
@@ -48,7 +48,7 @@ def process_isic2018(
 
 
 def process_ph2():
-    PH2_images_path = '/data2/cf_data/skinlesion_segment/PH2_rawdata/PH2_Dataset_images'
+    PH2_images_path = '/content/main/data/isic2016/PH2Dataset/PH2_Dataset_images'
 
     path_list = os.listdir(PH2_images_path)
     path_list.sort()
@@ -67,10 +67,10 @@ def process_ph2():
         label_new = cv2.resize(label, dim, interpolation=cv2.INTER_AREA)
 
         image_save_path = os.path.join(
-            '/data2/cf_data/skinlesion_segment/PH2_rawdata/PH2/Image',
+            '/content/main/data/isic2016/PH2Dataset/PH2/Image',
             path + '.npy')
         label_save_path = os.path.join(
-            '/data2/cf_data/skinlesion_segment/PH2_rawdata/PH2/Label',
+            '/content/main/data/isic2016/PH2Dataset/PH2/Label',
             path + '.npy')
 
         np.save(image_save_path, image_new)
@@ -79,3 +79,4 @@ def process_ph2():
 
 if __name__ == '__main__':
     process_isic2018()
+    process_ph2()

@@ -30,7 +30,7 @@ class myDataset(data.Dataset):
         self.point_paths = []
         self.dist_paths = []
 
-        root_dir = '/raid/wjc/data/skin_lesion/isic2016/'
+        root_dir = '/content/main/data/isic2016/'
         if split == 'train':
             self.image_paths = glob.glob(root_dir + '/Train/Image/*.npy')
             self.label_paths = glob.glob(root_dir + '/Train/Label/*.npy')

@@ -135,7 +135,7 @@ def kpm_gen(label_path, R, N):
 def point_gen_isic2018():
     R = 10
     N = 25
-    data_dir = '/raid/wjc/data/skin_lesion/isic2018/Label'
+    data_dir = '/content/main/data/isic2018/Label'
 
     save_dir = data_dir.replace('Label', 'Point')
     os.makedirs(save_dir, exist_ok=True)
@@ -158,7 +158,7 @@ def point_gen_isic2016():
     R = 10
     N = 25
     for split in ['Train', 'Test', 'Validation']:
-        data_dir = '/raid/wjc/data/skin_lesion/isic2016/{}/Label'.format(split)
+        data_dir = '/content/main/data/isic2016/{}/Label'.format(split)
 
         save_dir = data_dir.replace('Label', 'Point')
         os.makedirs(save_dir, exist_ok=True)
@@ -177,5 +177,5 @@ def point_gen_isic2016():
 
 
 if __name__ == '__main__':
-    # point_gen_isic2018()
+    point_gen_isic2018()
     point_gen_isic2016()

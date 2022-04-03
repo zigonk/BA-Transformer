@@ -18,7 +18,7 @@ def norm01(x):
     return np.clip(x, 0, 255) / 255
 
 
-seperable_indexes = json.load(open('/content/drive/MyDrive/Repo/BA-Transformer/Project_DL/Processed/data_split.json', 'r'))
+seperable_indexes = json.load(open('/content/main/data/isic2018/Processed/data_split.json', 'r'))
 
 
 # cross validation
@@ -26,7 +26,7 @@ class myDataset(data.Dataset):
     def __init__(self, fold, split, aug=False):
         super(myDataset, self).__init__()
         self.split = split
-        root_data_dir = '/content/main/data/Project/isic2018/'
+        root_data_dir = '/content/main/data/isic2018/'
 
         # load images, label, point
         self.image_paths = []
