@@ -158,12 +158,12 @@ class ResNet_Bottleneck_OS16(nn.Module):
         self.multi_scale = multi_scale
 
         if num_layers == 50:
-            resnet = models.resnet50()
+            resnet = models.resnet50(pretrained=True)
             # load pretrained model:
-            resnet.load_state_dict(
-                torch.load(
-                    "/home/wjc/.cache/torch/hub/checkpoints/resnet50-19c8e357.pth"
-                ))
+            # resnet.load_state_dict(
+            #     torch.load(
+            #         "/home/wjc/.cache/torch/hub/checkpoints/resnet50-19c8e357.pth"
+            #     ))
             # remove fully connected layer, avg pool and layer5:
             if self.multi_scale:
                 self.c2_layers = nn.Sequential(*list(resnet.children())[:5])
