@@ -76,7 +76,122 @@ def process_ph2():
         np.save(image_save_path, image_new)
         np.save(label_save_path, label_new)
 
+def process_foot_ulcer(dim=(512,512)):
+    for split in ['train', 'test', 'validation']:
+        if split == 'train':
+            save_dir = '/content/main/data/data/Foot Ulcer Segmentation Challenge/Train'
+            image_dir_path = '/content/main/data/data/Foot Ulcer Segmentation Challenge/{}/images/'.format(split)
+            mask_dir_path = '/content/main/data/data/Foot Ulcer Segmentation Challenge/{}/labels/'.format(split)
 
+            image_path_list = os.listdir(image_dir_path)
+            mask_path_list = os.listdir(mask_dir_path)
+
+            image_path_list = list(filter(lambda x: x[-3:] == 'png', image_path_list))
+            mask_path_list = list(filter(lambda x: x[-3:] == 'png', mask_path_list))
+
+            image_path_list.sort()
+            mask_path_list.sort()
+
+            print(len(image_path_list), len(mask_path_list))
+
+            # ISBI Dataset
+            for image_path, mask_path in zip(image_path_list, mask_path_list):
+                if image_path[-3:] == 'png':
+                    print(image_path)
+                    #assert os.path.basename(image_path)[:-4] == os.path.basename(mask_path)[:-4]
+                    _id = os.path.basename(image_path)[:-4]
+                    image_path = os.path.join(image_dir_path, image_path)
+                    mask_path = os.path.join(mask_dir_path, mask_path)
+                    image = plt.imread(image_path)
+                    mask = plt.imread(mask_path)
+
+                    image_new = cv2.resize(image, dim, interpolation=cv2.INTER_CUBIC)
+                    mask_new = cv2.resize(mask, dim, interpolation=cv2.INTER_NEAREST)
+
+                    save_dir_path = save_dir + '/Image'
+                    os.makedirs(save_dir_path, exist_ok=True)
+                    np.save(os.path.join(save_dir_path, _id + '.npy'), image_new)
+
+                    save_dir_path = save_dir + '/Label'
+                    os.makedirs(save_dir_path, exist_ok=True)
+                    np.save(os.path.join(save_dir_path, _id + '.npy'), mask_new)
+        elif split == 'validation':
+            save_dir = '/content/main/data/data/Foot Ulcer Segmentation Challenge/Validation'
+            image_dir_path = '/content/main/data/data/Foot Ulcer Segmentation Challenge/{}/images/'.format(split)
+            mask_dir_path = '/content/main/data/data/Foot Ulcer Segmentation Challenge/{}/labels/'.format(split)
+
+            image_path_list = os.listdir(image_dir_path)
+            mask_path_list = os.listdir(mask_dir_path)
+
+            image_path_list = list(filter(lambda x: x[-3:] == 'png', image_path_list))
+            mask_path_list = list(filter(lambda x: x[-3:] == 'png', mask_path_list))
+
+            image_path_list.sort()
+            mask_path_list.sort()
+
+            print(len(image_path_list), len(mask_path_list))
+
+            # ISBI Dataset
+            for image_path, mask_path in zip(image_path_list, mask_path_list):
+                if image_path[-3:] == 'png':
+                    print(image_path)
+                    #assert os.path.basename(image_path)[:-4] == os.path.basename(mask_path)[:-4]
+                    _id = os.path.basename(image_path)[:-4]
+                    image_path = os.path.join(image_dir_path, image_path)
+                    mask_path = os.path.join(mask_dir_path, mask_path)
+                    image = plt.imread(image_path)
+                    mask = plt.imread(mask_path)
+
+                    image_new = cv2.resize(image, dim, interpolation=cv2.INTER_CUBIC)
+                    mask_new = cv2.resize(mask, dim, interpolation=cv2.INTER_NEAREST)
+
+                    save_dir_path = save_dir + '/Image'
+                    os.makedirs(save_dir_path, exist_ok=True)
+                    np.save(os.path.join(save_dir_path, _id + '.npy'), image_new)
+
+                    save_dir_path = save_dir + '/Label'
+                    os.makedirs(save_dir_path, exist_ok=True)
+                    np.save(os.path.join(save_dir_path, _id + '.npy'), mask_new)
+        '''
+        elif split == 'test':
+            save_dir = '/content/main/data/data/Foot Ulcer Segmentation Challenge/Test'
+            image_dir_path = '/content/main/data/data/Foot Ulcer Segmentation Challenge/{}/images/'.format(split)
+            mask_dir_path = '/content/main/data/data/Foot Ulcer Segmentation Challenge/{}/labels/'.format(split)
+
+            image_path_list = os.listdir(image_dir_path)
+            mask_path_list = os.listdir(mask_dir_path)
+
+            image_path_list = list(filter(lambda x: x[-3:] == 'png', image_path_list))
+            mask_path_list = list(filter(lambda x: x[-3:] == 'png', mask_path_list))
+
+            image_path_list.sort()
+            mask_path_list.sort()
+
+            print(len(image_path_list), len(mask_path_list))
+
+            # ISBI Dataset
+            for image_path, mask_path in zip(image_path_list, mask_path_list):
+                if image_path[-3:] == 'png':
+                    print(image_path)
+                    assert os.path.basename(image_path)[:-4] == os.path.basename(mask_path)[:-4]
+                    _id = os.path.basename(image_path)[:-4]
+                    image_path = os.path.join(image_dir_path, image_path)
+                    mask_path = os.path.join(mask_dir_path, mask_path)
+                    image = plt.imread(image_path)
+                    mask = plt.imread(mask_path)
+
+                    image_new = cv2.resize(image, dim, interpolation=cv2.INTER_CUBIC)
+                    mask_new = cv2.resize(mask, dim, interpolation=cv2.INTER_NEAREST)
+
+                    save_dir_path = save_dir + '/Image'
+                    os.makedirs(save_dir_path, exist_ok=True)
+                    np.save(os.path.join(save_dir_path, _id + '.npy'), image_new)
+
+                    save_dir_path = save_dir + '/Label'
+                    os.makedirs(save_dir_path, exist_ok=True)
+                    np.save(os.path.join(save_dir_path, _id + '.npy'), mask_new)
+        '''
 if __name__ == '__main__':
-    process_isic2018()
-    process_ph2()
+    #process_isic2018()
+    #process_ph2()
+    process_foot_ulcer()

@@ -175,7 +175,28 @@ def point_gen_isic2016():
             np.save(save_path, point_heatmap)
             num += 1
 
+def point_gen_foot_ulcer():
+    R = 10
+    N = 25
+    for split in ['Train', 'Test', 'Validation']:
+        data_dir = '/content/main/data/data/Foot Ulcer Segmentation Challenge/{}/Label'.format(split)
+
+        save_dir = data_dir.replace('Label', 'Point')
+        os.makedirs(save_dir, exist_ok=True)
+
+        path_list = os.listdir(data_dir)
+        path_list.sort()
+        num = 0
+        for path in tqdm(path_list):
+            name = path[:-4]
+            label_path = os.path.join(data_dir, path)
+            print(label_path)
+            label_ori, point_heatmap = kpm_gen(label_path, R, N)
+            save_path = os.path.join(save_dir, name + '.npy')
+            np.save(save_path, point_heatmap)
+            num += 1
 
 if __name__ == '__main__':
-    point_gen_isic2018()
-    point_gen_isic2016()
+    #point_gen_isic2018()
+    #point_gen_isic2016()
+    point_gen_foot_ulcer()

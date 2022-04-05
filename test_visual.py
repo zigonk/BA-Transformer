@@ -41,6 +41,9 @@ if parse_config.dataset == 'isic2018':
 elif parse_config.dataset == 'isic2016':
     from dataset.isic2016 import norm01, myDataset
     dataset = myDataset('test', aug=False)
+elif parse_config.dataset == 'foot_ulcer':
+    from dataset.isic2016 import norm01, myDataset
+    dataset = myDataset('test', aug=False)
 
 if parse_config.arch == 'BAT':
     if parse_config.trans == 1:

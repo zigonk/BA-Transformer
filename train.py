@@ -84,6 +84,10 @@ elif parse_config.dataset == 'isic2016':
     from dataset.isic2016 import norm01, myDataset
     dataset = myDataset(split='train', aug=parse_config.aug)
     dataset2 = myDataset(split='valid', aug=False)
+elif parse_config.dataset == 'foot_ulcer':
+    from dataset.isic2016 import norm01, myDataset
+    dataset = myDataset(split='train', aug=parse_config.aug)
+    dataset2 = myDataset(split='valid', aug=False)
 
 train_loader = torch.utils.data.DataLoader(dataset,
                                            batch_size=parse_config.bt_size,
