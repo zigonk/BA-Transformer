@@ -197,6 +197,6 @@ def point_gen_foot_ulcer():
             num += 1
 
 if __name__ == '__main__':
-    #point_gen_isic2018()
+    point_gen_isic2018()
     #point_gen_isic2016()
     point_gen_foot_ulcer()
