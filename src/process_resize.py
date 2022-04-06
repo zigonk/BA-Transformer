@@ -192,6 +192,6 @@ def process_foot_ulcer(dim=(512,512)):
                     np.save(os.path.join(save_dir_path, _id + '.npy'), mask_new)
         '''
 if __name__ == '__main__':
-    process_isic2018()
+    #process_isic2018()
     #process_ph2()
     process_foot_ulcer()

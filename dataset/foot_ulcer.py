@@ -5,9 +5,11 @@ import torch
 import torch.nn as nn
 import numpy as np
 import torch.utils.data
+import torchvision
 from torchvision import transforms
 import torch.utils.data as data
 import torch.nn.functional as F
+from PIL import Image
 
 import albumentations as A
 
@@ -33,23 +35,14 @@ class myDataset(data.Dataset):
         root_dir = '/content/main/data/data/Foot Ulcer Segmentation Challenge/'
         if split == 'train':
             self.image_paths = glob.glob(root_dir + '/Train/Image/*.npy')
-            data_dir = 'content/main/data/data/Foot Ulcer Segmentation Challenge/train/labels'
-            for image in os.listdir(data_dir):
-                image = torchvision.transforms.Grayscale(image)
-            self.label_paths = glob.glob(root_dir + '/Train/Label/*.npy')
+                        self.label_paths = glob.glob(root_dir + '/Train/Label/*.npy')
             self.point_paths = glob.glob(root_dir + '/Train/Point/*.npy')
         elif split == 'validation':
             self.image_paths = glob.glob(root_dir + '/Validation/Image/*.npy')
-            data_dir = 'content/main/data/data/Foot Ulcer Segmentation Challenge/validation/labels'
-            for image in os.listdir(data_dir):
-                image = torchvision.transforms.Grayscale(image)
             self.label_paths = glob.glob(root_dir + '/Validation/Label/*.npy')
             self.point_paths = glob.glob(root_dir + '/Validation/Point/*.npy')
         elif split == 'test':
             self.image_paths = glob.glob(root_dir + '/Test/Image/*.npy')
-            data_dir = 'content/main/data/data/Foot Ulcer Segmentation Challenge/test/labels'
-            for image in os.listdir(data_dir):
-                image = torchvision.transforms.Grayscale(image)
             self.label_paths = glob.glob(root_dir + '/Test/Label/*.npy')
             self.point_paths = glob.glob(root_dir + '/Test/Point/*.npy')
         self.image_paths.sort()

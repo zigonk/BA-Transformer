@@ -2,11 +2,14 @@ import cv2
 import os
 import random
 import torch
+import torchvision
+from torchvision import transforms
 import numpy as np
 import skimage.draw
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
+from PIL import Image
 
 
 def create_circular_mask(h, w, center, radius):
@@ -48,6 +51,8 @@ def draw_msra_gaussian(heatmap, center, sigma):
 
 def kpm_gen(label_path, R, N):
     label = np.load(label_path)
+    label = label[:,:,1]
+    #label =  torchvision.transforms.functional.rgb_to_grayscale(label,num_output_channels = 1)
     #     label = label[0]
     label_ori = label.copy()
     label = label[::4, ::4]
@@ -197,6 +202,6 @@ def point_gen_foot_ulcer():
             num += 1
 
 if __name__ == '__main__':
-    point_gen_isic2018()
+    #point_gen_isic2018()
     #point_gen_isic2016()
     point_gen_foot_ulcer()
