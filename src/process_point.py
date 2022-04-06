@@ -51,7 +51,7 @@ def draw_msra_gaussian(heatmap, center, sigma):
 
 def kpm_gen(label_path, R, N):
     label = np.load(label_path)
-    label = label[:,:,1]
+    #label = label[:,:,1]
     #label =  torchvision.transforms.functional.rgb_to_grayscale(label,num_output_channels = 1)
     #     label = label[0]
     label_ori = label.copy()

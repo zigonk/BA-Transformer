@@ -35,7 +35,8 @@ class myDataset(data.Dataset):
         root_dir = '/content/main/data/data/Foot Ulcer Segmentation Challenge/'
         if split == 'train':
             self.image_paths = glob.glob(root_dir + '/Train/Image/*.npy')
-                        self.label_paths = glob.glob(root_dir + '/Train/Label/*.npy')
+            self.label_paths = glob.glob(root_dir + '/Train/Label/*.npy')
+            
             self.point_paths = glob.glob(root_dir + '/Train/Point/*.npy')
         elif split == 'validation':
             self.image_paths = glob.glob(root_dir + '/Validation/Image/*.npy')
