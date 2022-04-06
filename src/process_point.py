@@ -53,7 +53,7 @@ def kpm_gen(label_path, R, N):
     label = np.load(label_path)
     #label = label[:,:,1]
     #label =  torchvision.transforms.functional.rgb_to_grayscale(label,num_output_channels = 1)
-    #     label = label[0]
+    #label = label[0]
     label_ori = label.copy()
     label = label[::4, ::4]
     label = np.uint8(label * 255)
@@ -122,6 +122,8 @@ def kpm_gen(label_path, R, N):
                     point_heatmap = draw_msra_gaussian(
                         point_heatmap, (points[i, 0], points[i, 1]), 5)
                     selected_points.append(points[i])
+            if len(selected_points) > 0:
+                label_path
 
             print("selected_points num: ", len(selected_points))
             #             print(selected_points)

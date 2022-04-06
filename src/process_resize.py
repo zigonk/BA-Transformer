@@ -122,7 +122,7 @@ def process_foot_ulcer(dim=(512,512)):
             mask_dir_path = '/content/main/data/data/Foot Ulcer Segmentation Challenge/{}/labels/'.format(split)
 
             image_path_list = os.listdir(image_dir_path)
-            mask_path_list = os.listdir(mask_dir_path)[:,:,1]
+            mask_path_list = os.listdir(mask_dir_path)
 
             image_path_list = list(filter(lambda x: x[-3:] == 'png', image_path_list))
             mask_path_list = list(filter(lambda x: x[-3:] == 'png', mask_path_list))
@@ -141,7 +141,7 @@ def process_foot_ulcer(dim=(512,512)):
                     image_path = os.path.join(image_dir_path, image_path)
                     mask_path = os.path.join(mask_dir_path, mask_path)
                     image = plt.imread(image_path)
-                    mask = plt.imread(mask_path)
+                    mask = plt.imread(mask_path)[:,:,1]
 
                     image_new = cv2.resize(image, dim, interpolation=cv2.INTER_CUBIC)
                     mask_new = cv2.resize(mask, dim, interpolation=cv2.INTER_NEAREST)
@@ -179,7 +179,7 @@ def process_foot_ulcer(dim=(512,512)):
                     image_path = os.path.join(image_dir_path, image_path)
                     mask_path = os.path.join(mask_dir_path, mask_path)
                     image = plt.imread(image_path)
-                    mask = plt.imread(mask_path)
+                    mask = plt.imread(mask_path)[:,:,1]
 
                     image_new = cv2.resize(image, dim, interpolation=cv2.INTER_CUBIC)
                     mask_new = cv2.resize(mask, dim, interpolation=cv2.INTER_NEAREST)
