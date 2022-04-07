@@ -134,7 +134,7 @@ def kpm_gen(label_path, R, N):
             maskk[rr, cc] = 1
             intersection = np.logical_and(label_ori, maskk)
             union = np.logical_or(label_ori, maskk)
-            iou_score = np.sum(intersection) / np.sum(union)
+            iou_score = np.sum(intersection) / (np.sum(union) + 1e-6)
             print(iou_score)
     return label_ori, point_heatmap
 

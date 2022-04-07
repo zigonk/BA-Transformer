@@ -32,20 +32,19 @@ class myDataset(data.Dataset):
         self.point_paths = []
         self.dist_paths = []
 
-        root_dir = '/content/main/data/data/Foot Ulcer Segmentation Challenge/'
+        root_dir = '/content/main/data/data/footucer/'
         if split == 'train':
-            self.image_paths = glob.glob(root_dir + '/Train/Image/*.npy')
-            self.label_paths = glob.glob(root_dir + '/Train/Label/*.npy')
-            
-            self.point_paths = glob.glob(root_dir + '/Train/Point/*.npy')
+            self.image_paths = glob.glob(root_dir + '/train/Image/*.npy')
+            self.label_paths = glob.glob(root_dir + '/train/Label/*.npy')
+            self.point_paths = glob.glob(root_dir + '/train/Point/*.npy')
         elif split == 'validation':
-            self.image_paths = glob.glob(root_dir + '/Validation/Image/*.npy')
-            self.label_paths = glob.glob(root_dir + '/Validation/Label/*.npy')
-            self.point_paths = glob.glob(root_dir + '/Validation/Point/*.npy')
+            self.image_paths = glob.glob(root_dir + '/validation/Image/*.npy')
+            self.label_paths = glob.glob(root_dir + '/validation/Label/*.npy')
+            self.point_paths = glob.glob(root_dir + '/validation/Point/*.npy')
         elif split == 'test':
-            self.image_paths = glob.glob(root_dir + '/Test/Image/*.npy')
-            self.label_paths = glob.glob(root_dir + '/Test/Label/*.npy')
-            self.point_paths = glob.glob(root_dir + '/Test/Point/*.npy')
+            self.image_paths = glob.glob(root_dir + '/test/Image/*.npy')
+            self.label_paths = glob.glob(root_dir + '/test/Label/*.npy')
+            self.point_paths = glob.glob(root_dir + '/test/Point/*.npy')
         self.image_paths.sort()
         self.label_paths.sort()
         self.point_paths.sort()
