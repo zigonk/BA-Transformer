@@ -272,13 +272,13 @@ def evaluation(epoch, loader):
                 point_loss_c4 = 0.
                 for i in range(len(point_maps_pre_1) - 1):
                     point_loss_c4 += criteon(point_maps_pre_1[i], point_c4)
-                point_loss_c4 = 1.0 / len(point_maps_pre_1) * (
-                    point_loss_c4 + criteon(point_maps_pre_1[-1], point_c4))
+                point_loss_c4 = 1.0 / len(point_maps_pre_1 ) * (
+                    point_loss_c4 + criteon(point_maps_pre_1[-1], point_c4)+ 1e-6)
                 point_loss_c5 = 0.
                 for i in range(len(point_maps_pre_2) - 1):
                     point_loss_c5 += criteon(point_maps_pre_2[i], point_c5)
                 point_loss_c5 = 1.0 / len(point_maps_pre_2) * (
-                    point_loss_c5 + criteon(point_maps_pre_2[-1], point_c5))
+                    point_loss_c5 + criteon(point_maps_pre_2[-1], point_c5)+ 1e-6)
                 point_loss = 0.5 * (point_loss_c4 + point_loss_c5)
             elif parse_config.point_pred == 1:
                 output, point_maps_pre = model(data)
@@ -286,7 +286,7 @@ def evaluation(epoch, loader):
                 for i in range(len(point_maps_pre) - 1):
                     point_loss += criteon(point_maps_pre[i], point_c4)
                 point_loss = 1.0 / len(point_maps_pre) * (
-                    point_loss + criteon(point_maps_pre[-1], point_c4))
+                    point_loss + criteon(point_maps_pre[-1], point_c4)+ 1e-6)
 
             output = torch.sigmoid(output)
 
@@ -305,7 +305,7 @@ def evaluation(epoch, loader):
 
             output = output.cpu().numpy() > 0.5
 
-        label = label.cpu().numpy()
+        label = label.cpu().numpy() + 1e-6
         assert (output.shape == label.shape)
         dice_ave = dc(output, label)
         iou_ave = jc(output, label)

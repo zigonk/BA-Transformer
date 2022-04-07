@@ -62,8 +62,7 @@ def softmax_dice_loss(input_logits, target_logits):
     dice = 0
     for i in range(0, n):
         dice += dice_loss1(input_softmax[:, i], target_softmax[:, i])
-    mean_dice = dice / n
-
+    mean_dice = dice / (n + 1e-6)
     return mean_dice
 
 
