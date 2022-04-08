@@ -305,7 +305,7 @@ def evaluation(epoch, loader):
 
             output = output.cpu().numpy() > 0.5
 
-        label = label.cpu().numpy() + 1e-6
+        label = label.cpu().numpy()
         assert (output.shape == label.shape)
         try:
             dice_ave = dc(output, label)
