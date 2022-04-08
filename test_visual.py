@@ -43,7 +43,7 @@ elif parse_config.dataset == 'isic2016':
     dataset = myDataset('test', aug=False)
 elif parse_config.dataset == 'foot_ulcer':
     from dataset.foot_ulcer import norm01, myDataset
-    dataset = myDataset('test', aug=False)
+    dataset = myDataset('validation', aug=False)
 
 if parse_config.arch == 'BAT':
     if parse_config.trans == 1:
@@ -55,12 +55,12 @@ if parse_config.arch == 'BAT':
         model = DeepLabV3(1, parse_config.net_layer).cuda()
 
 dir_path = os.path.dirname(
-    os.path.abspath(__file__)) + "/logs/{}/{}/fold_{}/".format(
-        parse_config.dataset, parse_config.log_name, parse_config.fold)
+       "/content/drive/MyDrive/Repo/BA-Transformer/logs/{}/{}/fold_{}/".format(
+        parse_config.dataset, parse_config.log_name, parse_config.fold))
 
 from src.utils import load_model
 
-model = load_model(model, dir_path + 'model/best.pkl')
+model = load_model(model, dir_path + '/model/best.pkl')
 
 # logging
 txt_path = os.path.join(dir_path + 'parameter.txt')
