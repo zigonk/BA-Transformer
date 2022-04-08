@@ -307,11 +307,14 @@ def evaluation(epoch, loader):
 
         label = label.cpu().numpy() + 1e-6
         assert (output.shape == label.shape)
-        dice_ave = dc(output, label)
-        iou_ave = jc(output, label)
-        dice_value += dice_ave
-        iou_value += iou_ave
-        numm += 1
+        try:
+            dice_ave = dc(output, label)
+            iou_ave = jc(output, label)
+            dice_value += dice_ave
+            iou_value += iou_ave
+            numm += 1
+        except:
+            pass
 
     dice_average = dice_value / numm
     iou_average = iou_value / numm
